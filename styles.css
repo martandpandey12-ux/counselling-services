@@ -1,0 +1,492 @@
+/* =========================================================
+   IndiaCounsel — Dark Theme
+   A calm, dusk-toned palette (deep indigo ink, warm gold,
+   quiet sage) built for a counseling service: warm enough
+   to feel human, restrained enough to feel trustworthy.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ---- Color tokens ---- */
+  --ink:            #15131c;   /* base background: deep indigo-black, like dusk */
+  --ink-raised:      #1d1a26;   /* cards, header */
+  --ink-raised-2:    #262230;   /* hover / secondary surfaces */
+  --line:            #35303f;   /* hairline borders */
+  --line-soft:        #2a2632;
+
+  --text:            #f2ede3;   /* warm off-white */
+  --text-muted:       #b5adc2;  /* secondary lavender-grey */
+  --text-faint:       #7d7690;
+
+  --gold:            #e2a857;   /* warmth, care, attention */
+  --gold-strong:      #f0bd75;
+  --sage:            #8caa92;   /* calm, growth, secondary accent */
+  --sage-soft:        #4d5b50;
+
+  --focus:           #f0bd75;
+
+  /* ---- Type scale ---- */
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body:    'Karla', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* ---- Layout ---- */
+  --max-width: 1180px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+
+  --radius-sm: 4px;
+  --radius-md: 10px;
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------------------------------------------------------
+   Reset & base
+   --------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse 900px 500px at 85% -10%, rgba(226, 168, 87, 0.10), transparent 60%),
+    radial-gradient(ellipse 700px 500px at -10% 20%, rgba(140, 170, 146, 0.08), transparent 55%),
+    var(--ink);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+  color: var(--text-muted);
+  max-width: 62ch;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Accessible focus ring throughout */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------------------------------------------------------
+   Buttons
+   --------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.6rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease), transform 0.15s var(--ease);
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: #1c1608;
+}
+
+.btn-primary:hover {
+  background: var(--gold-strong);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--line);
+}
+
+.btn-secondary:hover {
+  border-color: var(--sage);
+  color: var(--sage);
+}
+
+/* ---------------------------------------------------------
+   Header / Navigation
+   --------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(21, 19, 28, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.navbar {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.1rem var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-right: auto;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.75rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav-links::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-links a {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  position: relative;
+  padding-bottom: 0.2rem;
+  transition: color 0.2s var(--ease);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.25s var(--ease);
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  white-space: nowrap;
+}
+
+.login-link {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  transition: color 0.2s var(--ease);
+}
+
+.login-link:hover {
+  color: var(--text);
+}
+
+.nav-actions .btn {
+  padding: 0.6rem 1.3rem;
+  font-size: 0.9rem;
+}
+
+/* ---------------------------------------------------------
+   Hero
+   --------------------------------------------------------- */
+
+.hero {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: clamp(4rem, 10vw, 8rem) var(--gutter) clamp(3rem, 8vw, 6rem);
+  position: relative;
+}
+
+.hero-content {
+  max-width: 640px;
+}
+
+.hero-label {
+  display: inline-block;
+  font-size: 0.95rem;
+  color: var(--sage);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--sage-soft);
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 5.5vw, 3.75rem);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.hero h1 span {
+  display: block;
+  font-style: normal;
+  font-weight: 500;
+  color: var(--gold-strong);
+}
+
+.hero p {
+  margin-top: 1.75rem;
+  font-size: 1.125rem;
+  color: var(--text-muted);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+/* ---------------------------------------------------------
+   Services
+   --------------------------------------------------------- */
+
+.services {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 6rem) var(--gutter);
+  border-top: 1px solid var(--line-soft);
+}
+
+.services h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  max-width: 20ch;
+  margin-bottom: 3rem;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line-soft);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.service-card {
+  background: var(--ink-raised);
+  padding: 2.25rem;
+  transition: background-color 0.25s var(--ease);
+}
+
+.service-card:hover {
+  background: var(--ink-raised-2);
+}
+
+.service-card:nth-child(odd) {
+  border-left: 2px solid var(--gold);
+}
+
+.service-card:nth-child(even) {
+  border-left: 2px solid var(--sage);
+}
+
+.service-card h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.service-card p {
+  font-size: 0.98rem;
+}
+
+/* ---------------------------------------------------------
+   How It Works
+   --------------------------------------------------------- */
+
+.how-it-works {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 6rem) var(--gutter);
+  border-top: 1px solid var(--line-soft);
+}
+
+.how-it-works h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  margin-bottom: 3rem;
+}
+
+.how-it-works ol {
+  counter-reset: step;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.how-it-works li {
+  counter-increment: step;
+  position: relative;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--text);
+  font-size: 1.02rem;
+}
+
+.how-it-works li::before {
+  content: counter(step, decimal-leading-zero);
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+/* ---------------------------------------------------------
+   Footer
+   --------------------------------------------------------- */
+
+.site-footer {
+  border-top: 1px solid var(--line-soft);
+  padding: 2rem var(--gutter);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-footer p {
+  font-size: 0.9rem;
+  color: var(--text-faint);
+  margin: 0;
+}
+
+.site-footer nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.site-footer nav a {
+  font-size: 0.9rem;
+  color: var(--text-faint);
+  transition: color 0.2s var(--ease);
+}
+
+.site-footer nav a:hover {
+  color: var(--sage);
+}
+
+/* ---------------------------------------------------------
+   Responsive
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .how-it-works ol {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .navbar {
+    flex-wrap: wrap;
+    row-gap: 0.75rem;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--line-soft);
+    justify-content: flex-start;
+  }
+
+  .nav-actions {
+    margin-left: auto;
+  }
+
+  .login-link {
+    display: none;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .how-it-works ol {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
